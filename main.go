@@ -1,9 +1,7 @@
-/*
-Thermostat app main module
-
-Responsible for interfacing with stdin/stdout, parsing program input, and
-interfacing with the owner module.
-*/
+// Thermostat app main module
+//
+// Responsible for interfacing with stdin/stdout, parsing program input, and
+// interfacing with the owner and owner_collection modules.
 
 package main
 
@@ -35,7 +33,7 @@ func readInput() ([]*Owner, [][]string) {
 		owners = append(owners, o)
 	}
 	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+		log.Fatal(err.Error())
 		return nil, nil
 	}
 
@@ -56,7 +54,8 @@ func readInput() ([]*Owner, [][]string) {
 		queries = append(queries, fields)
 	}
 	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+		log.Fatal(err.Error())
+		return nil, nil
 	}
 
 	return owners, queries
@@ -65,14 +64,13 @@ func readInput() ([]*Owner, [][]string) {
 func main() {
 	// Read input from stdin and parse into owner and query data structures
 	owners, queries := readInput()
+	if owners == nil || queries == nil {
+		log.Fatal("Loading input data failed.  Exiting.")
+		return
+	}
 
 	// Sort owners once so O(N^2) cost isn't recurring
 	SortOwners(owners)
-
-	// fmt.Println(owners)
-	// for _, o := range owners {
-	// 	fmt.Println(o.name, o.location, o.rValue)
-	// }
 
 	// Run each query against the sorted owners slice
 	for _, query := range queries {
