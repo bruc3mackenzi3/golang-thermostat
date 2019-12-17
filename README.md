@@ -2,10 +2,10 @@
 Build a program that will rate the Ecobee thermostat owners by the quality of insulation of their home.  Each user's R-value is to be rated relative to the others in the same region (city/province/county) they live.
 
 # Solution
-The program has been written in Golang, making it fast as well cross-platform compatible out of the box.  Only Go's standard library is used so no 3rd party package installs or cross-platform compiling is required.  With a modern version of Go installed the program can be seamlessly compiled and run on the target machine.
+To analyze this data produced by Ecobee thermostats the program has been written in Golang, making it fast as well cross-platform compatible out of the box.  Only Go's standard library is used so no 3rd party package installs or cross-platform compiling is required.  With a modern version of Go installed the program can be seamlessly compiled and run on the target machine.
 
 ## Run Instructions
-With Go installed and configured on your machine [(instructions here)](https://golang.org/doc/install), download and extract the program and cd into it.  Run it with the following commands.
+With Go installed and configured on your machine [(instructions here)](https://golang.org/doc/install), download and extract the program and cd into it.  Run it with the following commands.  
 Linux:
 ```
 go run . < input.txt
@@ -28,6 +28,10 @@ __DRY__ Don't Repeat Yourself.  Functions exist in programming for this exact re
 Unit tests have been implemented using Go's `testing` package.
 Run the unit tests with the command:
 `go test`
+
+Unit tests have total coverage over `owner.go` and `owner_collection.go`.  This covers everything except the main module code which interfaces between stdin/stdout and these modules.  Testing main.go is best left to functional and system level tests.
+
+Manual testing may also be performed with the provided input files.  `input.txt` contains valid input data while `input_invalid.txt` will cause an error.  With knowledge of the source code input data can be altered to test the various edge cases.
 
 ## Performance
 ### Time
