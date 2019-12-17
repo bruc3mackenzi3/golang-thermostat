@@ -12,6 +12,6 @@ func TestParseOwner(t *testing.T) {
 
 	result, _ := ParseOwner(input)
 	if *result != expected {
-		t.Errorf("Echo was incorrect,") // got: %s, expected: %s.", result, expected)
+		t.Errorf("Owner was incorrect,") // got: %s, expected: %s.", result, expected)
 	}
 }
