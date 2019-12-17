@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/csv"
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -24,7 +23,6 @@ func ParseOwner(input string) (*Owner, error) {
 	reader.Comma = ' ' // set delimiter to space
 	fields, err := reader.Read()
 	if err != nil {
-		fmt.Println(err)
 		return nil, err
 	}
 	if len(fields) != 3 {
