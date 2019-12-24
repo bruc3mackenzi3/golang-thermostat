@@ -7,14 +7,16 @@ import (
 	"strings"
 )
 
+// Owner type denoting a thermostat owner, their building location and the
+// building r-value
 type Owner struct {
 	name     string
 	location string
 	rValue   float64
 }
 
-// Parses the owner represented in the string input and returns a pointer to an
-// Owner struct.  Returns error if input is not.
+// ParseOwner Parses the owner represented in the string input and returns a
+// pointer to an Owner struct.  Returns error if input is not.
 // The expected format for input is a space-delimited CSV as such:
 // "John Doe" "Canada/Ontario/Toronto" 1.5
 func ParseOwner(input string) (*Owner, error) {
@@ -36,8 +38,8 @@ func ParseOwner(input string) (*Owner, error) {
 	}
 
 	// Validate location
-	geo_fields := strings.Split(fields[1], "/")
-	if len(geo_fields) != 3 || len(geo_fields[0]) == 0 || len(geo_fields[1]) == 0 || len(geo_fields[2]) == 0 {
+	geoFields := strings.Split(fields[1], "/")
+	if len(geoFields) != 3 || len(geoFields[0]) == 0 || len(geoFields[1]) == 0 || len(geoFields[2]) == 0 {
 		return nil, errors.New("Location field in input string invalid: " + input)
 	}
 

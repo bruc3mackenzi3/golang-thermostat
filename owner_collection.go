@@ -2,9 +2,9 @@ package main
 
 import "sort"
 
-// Sorts the slice of owners by the rValue field, in ascending order.  Note the
-// sort is stable (meaning order of equal items is preserved) and the sort is
-// done in place, hence nothing is returned.
+// SortOwners Sorts the slice of owners by the rValue field, in ascending order.
+// Note the sort is stable (meaning order of equal items is preserved) and the
+// sort is done in place, hence nothing is returned.
 // Time complexity: O(N^2)
 // Space complexity: O(N)
 func SortOwners(owners []*Owner) {
@@ -13,21 +13,21 @@ func SortOwners(owners []*Owner) {
 	})
 }
 
-// Given an owner name search the Owner slice for their entry and return their
-// ranking rValue
+// GetOwnerPercentile - Given an owner name search the Owner slice for their
+// entry and return their ranking rValue
 func GetOwnerPercentile(owners []*Owner, name string, location string) int {
-	prefix_len := len(location)
+	prefixLen := len(location)
 	count := 0
-	owner_index := -1
+	ownerIndex := -1
 	for _, owner := range owners {
-		if location == owner.location[0:prefix_len] {
+		if location == owner.location[0:prefixLen] {
 			count++
 			if name == owner.name {
-				owner_index = count
+				ownerIndex = count
 			}
 		}
 	}
-	return calculatePercentile(owner_index, count)
+	return calculatePercentile(ownerIndex, count)
 }
 
 // Helper function to calculate the percentile of an item at index i in dataset
